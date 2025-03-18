@@ -1,0 +1,38 @@
+BEGIN
+
+// Initialisation des compteurs
+longueur <- 0
+nombre_mots <- 0
+nombre_voyelles <- 0
+precedent_espace <- VRAI  // Pour détecter le début d'un mot
+
+// Lire le premier caractère
+LIRE caractere
+
+TANT QUE caractere ≠ '.' FAIRE
+    // Incrémenter la longueur totale
+    longueur <- longueur + 1
+
+    // Vérifier si le caractère est une voyelle
+    SI caractere DANS ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'] ALORS
+        nombre_voyelles <- nombre_voyelles + 1
+    FINSI
+
+    // Vérifier si on a un nouveau mot
+    SI caractere = ' ' ALORS
+        precedent_espace <- VRAI
+    SINON SI precedent_espace = VRAI ALORS
+        nombre_mots <- nombre_mots + 1
+        precedent_espace <- FAUX
+    FINSI
+
+    // Lire le prochain caractère
+    LIRE caractere
+FIN TANT QUE
+
+// Afficher les résultats
+AFFICHER "Longueur de la phrase : ", longueur
+AFFICHER "Nombre de mots : ", nombre_mots
+AFFICHER "Nombre de voyelles : ", nombre_voyelles
+
+END
